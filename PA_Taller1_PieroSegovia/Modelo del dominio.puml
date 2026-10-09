@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Peluqueria {
+  clientes
+  historial
+}
+
+class Persona {
+  nombre
+  rut
+  mascotas
+}
+
+class Mascota {
+  id
+  nombre
+  especie
+  edad
+  largoPelo
+}
+
+class Atencion {
+  rutDueno
+  idMascota
+  corteRealizado
+  totalPagado
+  fueExitoso
+}
+
+Peluqueria "1" -- "0..*" Persona : registra
+Persona "1" -- "0..*" Mascota : tiene
+Peluqueria "1" -- "0..*" Atencion : almacena
+@enduml

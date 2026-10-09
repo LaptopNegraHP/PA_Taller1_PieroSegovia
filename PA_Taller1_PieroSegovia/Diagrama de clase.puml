@@ -1,0 +1,63 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Peluqueria {
+  - clientes: Persona[]
+  - cantidadClientes: int
+  - historial: Atencion[]
+  - cantidadAtenciones: int
+  + agregarCliente(p: Persona): boolean
+  + buscarCliente(rut: String): Persona
+  + existeCliente(rut: String): boolean
+  + existeIdMascota(id: int): boolean
+  + agregarAtencion(a: Atencion): boolean
+  + esCorteCompatible(largo: String, corte: String): boolean
+  + nivelLargo(largo: String): int
+  + precioCorte(corte: String): int
+}
+
+class Persona {
+  - nombre: String
+  - rut: String
+  - mascotas: Mascota[]
+  - cantidadMascotas: int
+  + agregarMascota(m: Mascota): boolean
+  + getNombre(): String
+  + getRut(): String
+  + getMascotas(): Mascota[]
+  + getCantidadMascotas(): int
+}
+
+class Mascota {
+  - id: int
+  - nombre: String
+  - especie: String
+  - edad: int
+  - largoPelo: String
+  + getId(): int
+  + getNombre(): String
+  + getEspecie(): String
+  + getEdad(): int
+  + getLargoPelo(): String
+  + setLargoPelo(largo: String): void
+  + toString(): String
+}
+
+class Atencion {
+  - rutDueno: String
+  - idMascota: int
+  - corteRealizado: String
+  - totalPagado: int
+  - fueExitoso: boolean
+  + getRutDueno(): String
+  + getIdMascota(): int
+  + getCorteRealizado(): String
+  + getTotalPagado(): int
+  + isFueExitoso(): boolean
+  + toString(): String
+}
+
+Peluqueria "1" -- "0..*" Persona : registra
+Persona "1" -- "0..*" Mascota : tiene
+Peluqueria "1" -- "0..*" Atencion : almacena
+@enduml
